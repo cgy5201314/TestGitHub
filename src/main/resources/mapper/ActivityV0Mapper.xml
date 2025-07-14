@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.ActivityV0Mapper">
+    <select id="getActivityV0Mapper" resultType="com.example.demo.entity.ActivityV0">
+        SELECT
+            a.id AS activityId,
+            a.activity,
+            a.content,
+            a.time,
+            a.avatar,
+            a.pay,
+            a.paytype,
+            a.publishman,
+            a.doman,
+            a.domans,
+            IFNULL(i.status, 0) AS status,
+            IFNULL(i.usernum, #{userId}) AS usernum
+        FROM Activity a
+                 LEFT JOIN Activityinfo i ON a.id = i.activitynum AND i.usernum = #{userId}
+        WHERE a.deleted = 1
+
+    </select>
+
+
+</mapper>

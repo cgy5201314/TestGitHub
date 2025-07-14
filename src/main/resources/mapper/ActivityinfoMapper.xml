@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.ActivityinfoMapper">
+    <select id="selectById" resultType="com.example.demo.entity.Activityinfo">
+        SELECT * FROM activityinfo where usernum=#{uid}
+    </select>
+    <update id="update">
+        update activityinfo set status=status+1 where activitynum=#{aid} and usernum=#{uid}
+    </update>
+    <insert id="insert">
+        insert into activityinfo(activitynum,usernum,status) values(#{aid},#{uid},0)
+    </insert>
+    <select id="selectInfo" resultType="activityinfo">
+        SELECT * FROM activityinfo where activitynum=#{aid} and usernum=#{uid}
+    </select>
+
+</mapper>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.NoticeMapper">
+    <select id="getNotice" resultType="com.example.demo.entity.Notice">
+        SELECT * FROM notice ORDER BY RAND() LIMIT 1
+    </select>
+    <select id="getAllNotice" resultType="Notice">
+            SELECT * FROM notice where deleted = 1
+        </select>
+     <update id="deleteById" parameterType="int">
+        update notice set deleted = 0 where id = #{id}
+     </update>
+     <insert id="addNotice" parameterType="Notice">
+        insert into notice(title,content,time,noticetu) values(#{title},#{content},#{time},#{noticetu})
+     </insert>
+</mapper>

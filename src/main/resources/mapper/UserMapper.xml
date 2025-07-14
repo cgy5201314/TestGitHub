@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.UserMapper">
+
+<!--    <resultMap id="BaseResultMap" type="com.example.demo.entity.User">-->
+<!--        <id property="id" column="id" jdbcType="INTEGER"/>-->
+<!--        <result property="relationshipId" column="relationship_id" jdbcType="INTEGER"/>-->
+<!--        <result property="reminderTime" column="reminder_time" jdbcType="TIMESTAMP"/>-->
+<!--        <result property="receiver" column="receiver" jdbcType="VARCHAR"/>-->
+<!--        <result property="reminderType" column="reminder_type" jdbcType="TINYINT"/>-->
+<!--    </resultMap>-->
+    <select id="getUserById" resultType="com.example.demo.entity.User">
+        select * from user where id=#{id}
+    </select>
+    <select id="getUserByPhone" resultType="com.example.demo.entity.User">
+        select * from user where phone= #{phone}
+    </select>
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into user(username,avatar,phone) values(#{username},#{avatar},#{phone})
+    </insert>
+    <update id="updateById">
+        update user set username=#{username},avatar=#{avatar},password=#{password},phone=#{phone} where id=#{id}
+    </update>
+    <update id="updatePay" parameterType="int">
+        update user set score=score+#{num} where id=#{uid}
+    </update>
+</mapper>

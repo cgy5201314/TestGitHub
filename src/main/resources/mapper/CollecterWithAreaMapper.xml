@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.CollecterWithAreaMapper">
+    <select id="getAll" resultType="CollecterWithArea">
+        SELECT a.*,b.aname,b.desc,b.usernum FROM collection a,area b where a.area=b.id and a.deleted=1 and
+                                              a.uid=#{id}
+    </select>
+    <select id="getDay" resultType="CollecterWithArea">
+        SELECT a.*,b.aname,b.desc,b.usernum FROM collection a,area b
+        WHERE a.area=b.id and a.deleted = 1
+          AND DATE(time) = Date(#{day})
+    </select>
+    <select id="getToday" resultType="CollecterWithArea">
+        SELECT a.*,b.aname,b.desc,b.usernum FROM collection a,area b
+        WHERE a.area=b.id and a.deleted = 1
+          AND DATE(time) = CURDATE()
+    </select>
+</mapper>
